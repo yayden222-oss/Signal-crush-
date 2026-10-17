@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ff4f87">
+<title>Crush Signal 💘</title>
+<style>
+:root{--pink:#ff4f87;--rose:#ff86a8;--wine:#591b3a;--cream:#fff8fb;--purple:#9c63b8}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;color:var(--wine);background:radial-gradient(circle at 15% 15%,#ffe1eb 0 10%,transparent 30%),radial-gradient(circle at 90% 80%,#eadbff 0 8%,transparent 30%),linear-gradient(135deg,#fff5f8,#ffe1eb 48%,#f3e5ff);display:flex;align-items:center;justify-content:center;padding:20px;overflow-x:hidden}
+body:after{content:'♡ 𝓵𝓸𝓿𝓮 ♡';position:fixed;right:4vw;bottom:3vh;font-size:clamp(28px,6vw,64px);font-weight:900;color:#e94c87;opacity:.12;transform:rotate(-12deg);pointer-events:none} body:before{content:"♡  ♥  ✦  ♡  ✧  ♥  ♡";position:fixed;inset:0;display:flex;align-items:flex-start;justify-content:space-around;padding-top:5vh;color:#ff75a1;opacity:.25;font-size:clamp(20px,4vw,40px);pointer-events:none;letter-spacing:12px}
+.app{width:min(100%,540px);position:relative}.card{background-image:radial-gradient(ellipse at 100% 0%,rgba(255,120,170,.10),transparent 38%),radial-gradient(ellipse at 0% 100%,rgba(171,110,220,.10),transparent 35%)}
+.card{background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.9);border-radius:30px;padding:clamp(24px,6vw,42px);box-shadow:0 22px 70px #a5447330;backdrop-filter:blur(12px);text-align:center;min-height:460px;display:flex;flex-direction:column;justify-content:center}
+.eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#b44e79;font-weight:800}
+h1{font-size:clamp(2.2rem,9vw,3.8rem);line-height:1.02;margin:15px 0 12px;letter-spacing:-.05em}
+h1 span{color:var(--pink)}
+p{line-height:1.65;color:#86516a}
+.heart{font-size:3.4rem;filter:drop-shadow(0 8px 12px #ff4f8740);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{transform:scale(1.09)}}
+button{border:0;border-radius:999px;padding:15px 22px;font:inherit;font-weight:800;cursor:pointer;transition:transform .15s,box-shadow .15s}
+button:hover{transform:translateY(-2px)}
+.primary{color:white;background:linear-gradient(110deg,#ff4f87,#b75bd5);box-shadow:0 10px 22px #ff4f8740;margin-top:18px}
+.secondary{background:#fff0f5;color:#a83f6b;border:1px solid #ffd2e0}
+input{width:100%;padding:16px 18px;border:1.5px solid #f5bdd0;border-radius:16px;background:#fffafd;font:inherit;outline:none;color:var(--wine);margin-top:12px}
+input:focus{border-color:var(--pink);box-shadow:0 0 0 4px #ff4f8718}
+.progress-wrap{height:7px;background:#f7dce7;border-radius:10px;overflow:hidden;margin:0 0 24px}
+.progress{height:100%;width:0;background:linear-gradient(90deg,#ff4f87,#b75bd5);transition:width .3s}
+.question-count{font-size:.85rem;font-weight:800;color:#b44e79}
+.question{font-size:clamp(1.4rem,5vw,2rem);line-height:1.2;margin:12px 0 22px}
+.answers{display:grid;gap:10px;text-align:left}
+.answer{width:100%;background:#fff8fb;border:1.5px solid #f6c8d8;color:#713450;text-align:left;border-radius:16px;padding:15px 16px;font-weight:700}
+.answer.selected{background:#ffe2ec;border-color:#ff4f87;box-shadow:0 0 0 3px #ff4f8718}
+.note{font-size:.8rem;color:#a5788c;margin-top:18px}
+.result-badge{display:inline-block;padding:8px 14px;border-radius:99px;background:#ffe4ed;color:#b53d6e;font-weight:800;font-size:.85rem;margin:10px auto}
+.result-title{font-size:clamp(2rem,7vw,3rem);margin:12px 0}
+.result-score{font-size:3.5rem;font-weight:900;color:var(--pink);line-height:1}
+.small{font-size:.78rem;color:#a5788c}
+.hidden{display:none!important}
+footer{text-align:center;font-size:.75rem;color:#9d6a81;margin-top:15px}
+@media(max-width:420px){body{padding:12px}.card{border-radius:24px;min-height:440px;padding:24px 20px}}
+</style>
+</head>
+<body>
+<main class="app">
+  <section class="card" id="home">
+    <div class="heart">💘</div>
+    <div class="eyebrow">একটু ভালোবাসা, একটু রহস্য</div>
+    <h1>ক্রাশের <span>ইশারা</span></h1>
+    <p>তোমার ক্রাশ কি তোমাকে পছন্দ করে? কিছু মজার প্রশ্নের উত্তর দাও, আর ইশারাগুলো বোঝার চেষ্টা করো। ✨</p>
+    <button class="primary" onclick="showName()">চলো জেনে নিই ♡</button>
+    <div class="note">শুধু মজার জন্য—কোনো কুইজ কারও মনের কথা নিশ্চিতভাবে বলতে পারে না।</div>
+  </section>
+
+  <section class="card hidden" id="namePage">
+    <div class="heart">🎀</div>
+    <div class="eyebrow">আগে নিজের নাম বলো</div>
+    <h1>তোমার <span>নাম কী?</span></h1>
+    <p>চলো, এই ছোট্ট লাভ কুইজটা তোমার জন্য সাজাই।</p>
+    <form id="nameForm">
+      <input id="userName" maxlength="28" placeholder="তোমার নাম লেখো..." autocomplete="given-name" required>
+      <button class="primary" type="submit" style="width:100%">পরের ধাপ →</button>
+    </form>
+    <button class="secondary" onclick="goHome()">← Back</button>
+  </section>
+
+  <section class="card hidden" id="quizPage">
+    <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+    <div class="question-count" id="counter">QUESTION 1 OF 8</div>
+    <h2 class="question" id="questionText"></h2>
+    <div class="answers" id="answers"></div>
+    <button class="primary" id="nextBtn" disabled onclick="nextQuestion()">পরের ধাপ →</button>
+    <div class="note">যা সত্যি খেয়াল করেছ, সেটাই বেছে নাও—অনুমান করার দরকার নেই। 💗</div>
+  </section>
+
+  <section class="card hidden" id="resultPage">
+    <div class="heart" id="resultHeart">💌</div>
+    <div class="eyebrow">তোমার ক্রাশের ইশারা</div>
+    <div class="result-badge" id="resultBadge">তোমার ফলাফল</div>
+    <h2 class="result-title" id="resultTitle"></h2>
+    <div class="result-score" id="resultScore"></div>
+    <p id="resultText"></p>
+    <p class="small">এটি তোমার উত্তরের ভিত্তিতে মজার একটি অনুমান, কারও অনুভূতির প্রমাণ নয়। সবচেয়ে ভালো উপায় হলো সম্মান রেখে খোলামেলা কথা বলা।</p>
+    <button class="primary" onclick="restart()">আবার খেলো ♡</button>
+    <button class="secondary" onclick="shareResult()">ফলাফল শেয়ার করো ↗</button>
+  </section>
+  <footer>মনের প্রজাপতিগুলোর জন্য ভালোবাসা দিয়ে বানানো ♡</footer>
+</main>
+<script>
+const questions=[
+ {q:"সে কি প্রায়ই তোমার দিকে তাকায়?",a:[["👀 হ্যাঁ, তাকাতে দেখি","yes"],["😊 মাঝে মাঝে","maybe"],["🫣 খেয়াল করিনি","no"],["🤷 বুঝতে পারি না","unsure"]]},
+ {q:"তোমাদের চোখাচোখি হলে কী হয়?",a:[["☺️ সে হাসে বা লজ্জা পায়","yes"],["✨ দুজনেই চোখ সরিয়ে নিই","maybe"],["😐 তেমন কিছু হয় না","no"],["🙈 এমন হয়নি","unsure"]]},
+ {q:"সে কি তোমার সঙ্গে কথা বলার ছোটখাটো অজুহাত খোঁজে?",a:[["💬 হ্যাঁ, প্রায়ই","yes"],["🌷 মাঝে মাঝে","maybe"],["🧍 তেমন না","no"],["🤔 আমাদের বেশি কথা হয় না","unsure"]]},
+ {q:"তুমি যা বলো, তার ছোটখাটো কথাও কি সে মনে রাখে?",a:[["💗 হ্যাঁ, ছোট বিষয়ও মনে রাখে","yes"],["🌸 মাঝে মাঝে","maybe"],["😶 মনে হয় না","no"],["🫧 নিশ্চিত নই","unsure"]]},
+ {q:"অন্যদের তুলনায় তোমার সঙ্গে সে কেমন আচরণ করে?",a:[["🦋 একটু বেশি মনোযোগী বা লাজুক","yes"],["🙂 প্রায় একই রকম","maybe"],["😶 একটু দূরত্ব রাখে","no"],["👀 তুলনা করে দেখিনি","unsure"]]},
+ {q:"সে কি কখনো নিজে থেকে কথা শুরু করে বা মেসেজ দেয়?",a:[["📱 হ্যাঁ, দেয়","yes"],["💌 মাঝে মাঝে","maybe"],["🔕 সাধারণত আমিই শুরু করি","no"],["🌙 আমাদের মেসেজ হয় না","unsure"]]},
+ {q:"তোমার সঙ্গে সময় কাটাতে কি তাকে খুশি মনে হয়?",a:[["🥰 হ্যাঁ, সে সময় বের করে","yes"],["🌷 মাঝে মাঝে, দলেও","maybe"],["😕 আগ্রহী মনে হয় না","no"],["🫶 এখনো সুযোগ হয়নি","unsure"]]},
+ {q:"সে কি তোমার সঙ্গে ভালো ও সম্মানজনক আচরণ করে?",a:[["💖 সবসময়, তার কাছে স্বস্তি লাগে","yes"],["🌼 বেশিরভাগ সময়, মনে হয়","maybe"],["🚩 তেমন না","no"],["🤍 এখনো তাকে ভালোভাবে চিনছি","unsure"]]}
+];
+let name="",index=0,answers=[];
+const $=id=>document.getElementById(id);
+function showPage(id){["home","namePage","quizPage","resultPage"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
+function showName(){showPage("namePage");setTimeout(()=>$("userName").focus(),50)}
+function goHome(){showPage("home")}
+$("nameForm").addEventListener("submit",e=>{e.preventDefault();name=$("userName").value.trim();if(!name)return;index=0;answers=[];showPage("quizPage");renderQuestion()});
+function renderQuestion(){let q=questions[index];$("counter").textContent=`প্রশ্ন ${index+1} / ${questions.length}`;$("progress").style.width=`${index/questions.length*100}%`;$("questionText").textContent=q.q;$("answers").innerHTML="";$("nextBtn").disabled=true;$("nextBtn").textContent=index===questions.length-1?"SEE MY RESULT 💌":"পরের ধাপ →";q.a.forEach(([label,val])=>{let b=document.createElement("button");b.type="button";b.className="answer";b.textContent=label;b.onclick=()=>{answers[index]=val;[...$("answers").children].forEach(x=>x.classList.remove("selected"));b.classList.add("selected");$("nextBtn").disabled=false};$("answers").appendChild(b)})}
+function nextQuestion(){if(!answers[index])return;if(index<questions.length-1){index++;renderQuestion()}else showResult()}
+function showResult(){let score=0;answers.forEach(a=>{if(a==="yes")score+=2;else if(a==="maybe")score+=1;else if(a==="unsure")score+=.5});let pct=Math.round(score/(questions.length*2)*100);$("progress").style.width="100%";$("resultScore").textContent=pct+"%";if(answers[7]==="no"){ $("resultHeart").textContent="🤍";$("resultBadge").textContent="তুমি সম্মান পাওয়ার যোগ্য";$("resultTitle").textContent=name+", ভালো আচরণটাই আগে।"; $("resultText").textContent="যে তোমাকে পছন্দ করে, তার সঙ্গে তোমার নিরাপদ ও সম্মানিত বোধ করা উচিত। সে ভালো আচরণ না করলে তার মনোযোগ পাওয়ার জন্য নিজেকে কষ্ট দিও না.";}else if(pct>=72){$("resultHeart").textContent="💗";$("resultBadge").textContent="ইতিবাচক কিছু ইশারা";$("resultTitle").textContent="ওহো, "+name+"… 👀";$("resultText").textContent="তুমি এমন কিছু ইশারা খেয়াল করেছ, যা আগ্রহের লক্ষণ হতে পারে। স্বাভাবিক থাকো, আর দেখো সে নিয়মিত তোমার প্রতি আগ্রহ দেখায় কি না.";}else if(pct>=43){$("resultHeart").textContent="🦋";$("resultBadge").textContent="হতে পারে, আবার নাও পারে";$("resultTitle").textContent=name+", ব্যাপারটা একটু রহস্যময়!"; $("resultText").textContent="কিছু ইশারা থাকতে পারে, তবে সে শুধু বন্ধুসুলভও হতে পারে। সময় নাও এবং তার আচরণ ধারাবাহিক ও সম্মানজনক কি না খেয়াল করো.";}else{$("resultHeart").textContent="🔮";$("resultBadge").textContent="ইশারা এখনো স্পষ্ট নয়";$("resultTitle").textContent=name+", এখনো রহস্য রয়ে গেছে।"; $("resultText").textContent="এখনো স্পষ্ট ইশারা খুব বেশি নেই। এর মানে এই নয় যে সে তোমাকে পছন্দ করে না—শুধু এখনই নিশ্চিত হওয়ার মতো তথ্য নেই। নিজের মতো থাকো.";}showPage("resultPage")}
+function restart(){index=0;answers=[];showPage("quizPage");renderQuestion()}
+function shareResult(){let text=`💘 Crush Signal result for ${name}: ${$("resultTitle").textContent} ${$("resultScore").textContent}\nTake the quiz and see what তোমার ক্রাশের ইশারাs might mean!`;if(navigator.share)navigator.share({title:"Crush Signal 💘",text}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(text).then(()=>alert("Result text copied!"));else alert(text)}
+</script>
+</body>
+</html>
